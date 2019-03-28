@@ -1,7 +1,7 @@
 # Selenium拉勾网爬虫(已采集1671条杭州招聘信息)
 
 - 杨涛 手机:18268100534  邮箱:18268100534@163.com
-- chromedriver.exe和job.sql在data目录下
+- chromedriver.exe和job.sql(表结构和1671条记录)在data目录下
 
 ## 启动
 
