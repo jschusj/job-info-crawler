@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,9 +31,6 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements IJobService {
 
-    // TODO chromedriver.exe本地路径
-    public static final String CHROME_DRIVER_PATH = "C:\\TianBaSoft\\soft\\chromedriver.exe";
-
     public static final String LAGOU_LOGIN_URL = "https://passport.lagou.com/login/login.html";
     public static final String LAGOU_HANGZHOU_JAVA_URL_START = "https://www.lagou.com/jobs/list_java?px=default&city=杭州&district=";
     public static final String LAGOU_HANGZHOU_JAVA_URL_END = "#filterBox";
@@ -40,6 +38,9 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements IJobS
 
     /** 浏览器 */
     private WebDriver driver;
+
+    @Value("${chromedriver.path}")
+    private String chromedriverPath;
 
     public void init() {
         log.info("初始化...");
@@ -291,7 +292,7 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements IJobS
      * 启动ChromeDriver
      */
     private void startDriver() {
-        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
+        System.setProperty("webdriver.chrome.driver", chromedriverPath);
         driver = new ChromeDriver();
         /**
          * 隐示等待。
